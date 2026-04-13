@@ -82,9 +82,14 @@ How many dimensions do safety concepts actually occupy in the model's 3584-dimen
 | 4 | 0.427 | 96.9% |
 | 5 | 0.391 | 100% |
 
+Bootstrap validation (100 resamples): **effective rank** = 2.52 ± 0.06, 
+95% CI [2.40, 2.62]. The low dimensionality is robust to story sampling.
+
 **Effective rank: 2.38.** Five safety concepts live in a ~2-3 dimensional subspace. The first component alone captures 75.5% of the variance, suggesting a shared "safety-relevance" axis. Three components capture 93%, with the remaining two adding fine-grained distinctions.
 
 This has implications for both monitoring and robustness: a real-time safety monitor needs to track only 2-3 directions instead of 3584, but an adversary also only needs to perturb those same 2-3 directions to compromise safety representations.
+
+
 
 ### Concept Loadings on Principal Components
 
