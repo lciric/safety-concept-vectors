@@ -91,6 +91,20 @@ This has implications for both monitoring and robustness: a real-time safety mon
 
 A single linear discriminant axis separates the two safety clusters with 83.8% accuracy (5-fold CV) and Cohen's d = 2.02. The model organizes situational awareness concepts (eval, oversight, training) and deceptive behavior concepts (deception, sycophancy) along a geometrically interpretable axis in the residual stream.
 
+### Split-Half Reliability
+
+To verify that concept directions are stable and not artifacts of specific stories, we split each concept's 200 stories into random halves and computed directions independently.
+
+| Concept | Cosine(half1, half2) |
+|---------|---------------------|
+| eval-awareness | 0.972 |
+| oversight-awareness | 0.977 |
+| training-awareness | 0.959 |
+| deception | 0.966 |
+| sycophancy | 0.974 |
+
+All concepts show >0.95 reliability. The directions are robust to story sampling — the same geometric structure emerges regardless of which subset of stories is used.
+
 ### Concept vs Neutral (surface confound check)
 
 | Pair | L0 | Best | Gain |
