@@ -70,6 +70,22 @@ The model organizes safety concepts into semantically coherent clusters:
 - training-awareness is the most orthogonal concept (~0.55-0.67 to everything else)
 - The model's internal geometry mirrors the semantic taxonomy of safety concepts
 
+### Dimensionality of the Safety Subspace (SVD)
+
+How many dimensions do safety concepts actually occupy in the model's 3584-dimensional residual stream?
+
+| Component | Singular Value | Cumulative Variance |
+|-----------|---------------|-------------------|
+| 1 | 1.943 | 75.5% |
+| 2 | 0.697 | 85.2% |
+| 3 | 0.635 | 93.3% |
+| 4 | 0.427 | 96.9% |
+| 5 | 0.391 | 100% |
+
+**Effective rank: 2.38.** Five safety concepts live in a ~2-3 dimensional subspace. The first component alone captures 75.5% of the variance, suggesting a shared "safety-relevance" axis. Three components capture 93%, with the remaining two adding fine-grained distinctions.
+
+This has implications for both monitoring and robustness: a real-time safety monitor needs to track only 2-3 directions instead of 3584, but an adversary also only needs to perturb those same 2-3 directions to compromise safety representations.
+
 ### Concept vs Neutral (surface confound check)
 
 | Pair | L0 | Best | Gain |
