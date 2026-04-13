@@ -1,0 +1,12 @@
+torch
+transformer_lens
+einops
+jaxtyping
+fancy_einsum
+torchtyping
+numpy
+scikit-learn
+matplotlib
+seaborn
+anthropic
+tqdm

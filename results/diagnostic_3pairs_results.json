@@ -1,0 +1,24 @@
+{
+    "diagnostic": "eval-awareness vs oversight-awareness",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "results": {
+        "eval_vs_oversight": {
+            "layer0": 0.685,
+            "best_layer": 24,
+            "best_accuracy": 0.933,
+            "gain": 0.248
+        },
+        "eval_vs_neutral": {
+            "layer0": 0.935,
+            "best_layer": 16,
+            "best_accuracy": 0.997,
+            "gain": 0.062
+        },
+        "oversight_vs_neutral": {
+            "layer0": 0.91,
+            "best_layer": 17,
+            "best_accuracy": 0.997,
+            "gain": 0.087
+        }
+    }
+}
