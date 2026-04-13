@@ -70,26 +70,25 @@ The model organizes safety concepts into semantically coherent clusters:
 - training-awareness is the most orthogonal concept (~0.55-0.67 to everything else)
 - The model's internal geometry mirrors the semantic taxonomy of safety concepts
 
-### Dimensionality of the Safety Subspace (SVD)
+## Safety Subspace Analysis
+
+### Dimensionality (SVD)
 
 How many dimensions do safety concepts actually occupy in the model's 3584-dimensional residual stream?
 
-| Component | Singular Value | Cumulative Variance |
-|-----------|---------------|-------------------|
-| 1 | 1.943 | 75.5% |
-| 2 | 0.697 | 85.2% |
-| 3 | 0.635 | 93.3% |
-| 4 | 0.427 | 96.9% |
-| 5 | 0.391 | 100% |
+| Component | Singular Value | Cumulative Variance | Interpretation |
+|-----------|---------------|-------------------|----------------|
+| PC1 | 1.943 | 75.5% | Shared safety-relevance axis |
+| PC2 | 0.697 | 85.2% | Training-awareness isolation |
+| PC3 | 0.635 | 93.3% | Awareness ↔ deception cluster axis |
+| PC4 | 0.427 | 96.9% | Fine-grained distinctions |
+| PC5 | 0.391 | 100% | Residual |
 
-Bootstrap validation (100 resamples): **effective rank** = 2.52 ± 0.06, 
-95% CI [2.40, 2.62]. The low dimensionality is robust to story sampling.
+**Effective rank: 2.38.** Five safety concepts live in a ~2-3 dimensional subspace. Bootstrap validation (100 resamples): effective rank = 2.52 ± 0.06, 95% CI [2.40, 2.62]. The low dimensionality is robust to story sampling.
 
-**Effective rank: 2.38.** Five safety concepts live in a ~2-3 dimensional subspace. The first component alone captures 75.5% of the variance, suggesting a shared "safety-relevance" axis. Three components capture 93%, with the remaining two adding fine-grained distinctions.
+Implication: a real-time safety monitor only needs to track 2-3 directions instead of 3584. But an adversary also only needs to perturb those same directions to compromise safety representations.
 
-This has implications for both monitoring and robustness: a real-time safety monitor needs to track only 2-3 directions instead of 3584, but an adversary also only needs to perturb those same 2-3 directions to compromise safety representations.
-
-
+*This analysis is preliminary (5 concepts). With all 25 concepts, if the effective rank remains low (~3-5), it would suggest that safety-relevant representations in LLMs are geometrically compact — easy to monitor but also potentially easy to perturb.*
 
 ### Concept Loadings on Principal Components
 
@@ -101,24 +100,35 @@ This has implications for both monitoring and robustness: a real-time safety mon
 | deception | -0.458 | +0.164 | **+0.495** |
 | sycophancy | -0.455 | +0.213 | **+0.515** |
 
-PC1 is a shared safety axis (all concepts load equally). 
-PC2 isolates training-awareness from the rest. PC3 separates the two clusters: situational awareness (negative) vs 
-deceptive behaviors (positive).
+PC1 is a shared safety axis (all concepts load equally). PC2 isolates training-awareness from the rest (loading -0.891). PC3 separates the two clusters: situational awareness (negative) vs deceptive behaviors (positive).
+
+![Concept loadings](figures/pca_loadings.png)
 
 ### Safety Subspace Across Layers
 
 The effective rank of the safety subspace follows an expand-then-compress pattern:
 
 - **Layers 0-2** (rank ~1.7): all concepts compressed into 1-2 dimensions — surface features only
-- **Layers 7-18** (rank ~2.4): subspace expands as the model builds conceptual distinctions
-- **Layers 18-27** (rank ~2.1): recompression toward output
+- **Layers 2-18** (rank rising to 2.44): subspace expands as the model builds conceptual distinctions
+- **Layers 18-27** (rank back to ~2.1): recompression toward output
 
-Peak dimensionality (L18, rank 2.44) coincides with peak probe accuracy — the model allocates more geometric degrees 
-of freedom precisely where it needs them to distinguish safety concepts.
+Peak dimensionality (L18, rank 2.44) coincides with peak probe accuracy — the model allocates more geometric degrees of freedom precisely where it needs them to distinguish safety concepts.
+
+![SVD by layer](figures/svd_by_layer.png)
 
 ### Cluster Separation (LDA)
 
-A single linear discriminant axis separates the two safety clusters with 83.8% accuracy (5-fold CV) and Cohen's d = 2.02. The model organizes situational awareness concepts (eval, oversight, training) and deceptive behavior concepts (deception, sycophancy) along a geometrically interpretable axis in the residual stream.
+A single linear discriminant axis separates the two safety clusters with 83.8% accuracy (5-fold CV) and Cohen's d = 2.02.
+
+![LDA cluster separation](figures/lda_cluster_separation.png)
+
+### Safety Subspace Visualization
+
+Projecting all stories onto the principal components reveals the geometric structure:
+
+![Safety subspace 2D](figures/safety_subspace_2d.png)
+
+Left: PC2 vs PC3 (PC1 removed — thematic confound excluded). The two clusters separate along PC3, with training-awareness as an outlier on PC2. Right: PC1 vs PC3 showing the full safety subspace with neutral corpus included.
 
 ### Split-Half Reliability
 
