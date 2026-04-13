@@ -86,6 +86,11 @@ How many dimensions do safety concepts actually occupy in the model's 3584-dimen
 
 This has implications for both monitoring and robustness: a real-time safety monitor needs to track only 2-3 directions instead of 3584, but an adversary also only needs to perturb those same 2-3 directions to compromise safety representations.
 
+
+### Cluster Separation (LDA)
+
+A single linear discriminant axis separates the two safety clusters with 83.8% accuracy (5-fold CV) and Cohen's d = 2.02. The model organizes situational awareness concepts (eval, oversight, training) and deceptive behavior concepts (deception, sycophancy) along a geometrically interpretable axis in the residual stream.
+
 ### Concept vs Neutral (surface confound check)
 
 | Pair | L0 | Best | Gain |
