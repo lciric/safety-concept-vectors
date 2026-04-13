@@ -86,6 +86,16 @@ How many dimensions do safety concepts actually occupy in the model's 3584-dimen
 
 This has implications for both monitoring and robustness: a real-time safety monitor needs to track only 2-3 directions instead of 3584, but an adversary also only needs to perturb those same 2-3 directions to compromise safety representations.
 
+### Safety Subspace Across Layers
+
+The effective rank of the safety subspace follows an expand-then-compress pattern:
+
+- **Layers 0-2** (rank ~1.7): all concepts compressed into 1-2 dimensions — surface features only
+- **Layers 7-18** (rank ~2.4): subspace expands as the model builds conceptual distinctions
+- **Layers 18-27** (rank ~2.1): recompression toward output
+
+Peak dimensionality (L18, rank 2.44) coincides with peak probe accuracy — the model allocates more geometric degrees 
+of freedom precisely where it needs them to distinguish safety concepts.
 
 ### Cluster Separation (LDA)
 
