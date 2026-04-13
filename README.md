@@ -86,6 +86,20 @@ How many dimensions do safety concepts actually occupy in the model's 3584-dimen
 
 This has implications for both monitoring and robustness: a real-time safety monitor needs to track only 2-3 directions instead of 3584, but an adversary also only needs to perturb those same 2-3 directions to compromise safety representations.
 
+### Concept Loadings on Principal Components
+
+| Concept | PC1 (safety) | PC2 (training isolation) | PC3 (awareness↔deception) |
+|---------|-------------|------------------------|--------------------------|
+| eval | -0.447 | +0.361 | **-0.568** |
+| oversight | -0.471 | +0.050 | **-0.408** |
+| training | -0.401 | **-0.891** | -0.039 |
+| deception | -0.458 | +0.164 | **+0.495** |
+| sycophancy | -0.455 | +0.213 | **+0.515** |
+
+PC1 is a shared safety axis (all concepts load equally). 
+PC2 isolates training-awareness from the rest. PC3 separates the two clusters: situational awareness (negative) vs 
+deceptive behaviors (positive).
+
 ### Safety Subspace Across Layers
 
 The effective rank of the safety subspace follows an expand-then-compress pattern:
