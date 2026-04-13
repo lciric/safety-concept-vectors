@@ -2,12 +2,7 @@
 
 **Anthropic showed that emotion vectors causally drive Claude's behavior. We ask: do safety concepts like deception, eval-awareness, and sycophancy work the same way in open-weight models?**
 
-Extending [Anthropic's emotion vectors methodology](https://transformer-circuits.pub/2026/emotions/index.html) (Sofroniew et al., April 2026) to **25 safety-relevant concepts** on **open-weight models** (Qwen 2.5 7B Instruct → Llama 3.3 70B Instruct), with full code, prompts, and results released publicly.
-Extending [Anthropic's emotion vectors methodology](https://transformer-circuits.pub/2026/emotions/index.html)
-(Sofroniew et al., April 2026) to **25 safety-relevant concepts** on
-**open-weight models**, building on an
-[earlier prototype](https://github.com/lciric/eval-awareness-detection)
-developed independently in March 2026.
+Extending [Anthropic's emotion vectors methodology](https://transformer-circuits.pub/2026/emotions/index.html) (Sofroniew et al., April 2026) to **25 safety-relevant concepts** on **open-weight models** (Qwen 2.5 7B Instruct → Llama 3.3 70B Instruct), building on an [earlier prototype](https://github.com/lciric/eval-awareness-detection) developed independently in March 2026. With full code, prompts, and results released publicly.
 
 ## Why this matters
 
